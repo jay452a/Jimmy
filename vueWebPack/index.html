@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>入口文件</title>
+		<link rel="stylesheet" type="text/css" href="assets/styles.css"/>
+	</head>
+	<body>
+		<header class="indexHeader">
+			<img src="src/img/logo.png">
+			<h2>陕西联通运营支撑平台</h2>
+		</header>
+		<nav class="indexNav">您当前的位置：<span>需求支撑</span>><span>需求列表</span></nav>
+		<div id="app">
+			<!--<modal 
+				:show="true" 
+				@input="show" 
+				title="这是个很牛逼的东西" 
+				isSB="false"
+				>
+			</modal>-->
+		   	 <router-view></router-view>
+		</div>
+		<script src="assets/bundle.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

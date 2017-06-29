@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>vue基础</title>
+		<style type="text/css">
+			i{color: red;}
+			.active{color: blue;}
+			.error{font-weight: bold;}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<div style="float: left;width: 35%;">
+			<h1>实例属性与方法</h1>
+			   <p>这是<i>{{a}}</i></p>
+			<h1>模板语法</h1>
+			   <p>这是<i>{{message}}</i></p>
+			   <div v-html="rawHtml"></div>
+			   <p><i>{{ number + 1 }}</i> is javascript</p>
+			   <a v-bind:href="url">参数</a>
+			   <p>自定义过滤器：<i>{{ message | slice }}</i></p>
+		    <h1>计算属性</h1>
+		       <p>这是计算属性的结果：<i>{{revMessage}}</i></p>
+		    <h1>class与style绑定</h1> 
+		        <p v-bind:class="{active:isActive}">对象语法：class绑定</p>
+		        <p v-bind:class="[activeClass,errorClass]">数组语法：class绑定</p>
+		        <div v-bind:class="[isActive ? activeClass : '', errorClass]">数组语法：三元表达式切换</div>
+		         <p v-bind:style="styleObject">style对象语法</p>
+		         <p v-bind:style="[baseStyles, overridingStyles]">style数组语法</p>
+		         
+		     <h1>条件渲染</h1>
+		         <p v-if="isShow">yes</p>
+		         <p v-else>no</p>
+		         <p v-show="isShow">show</p>
+		         <p v-show="!isShow">hide</p>
+		         
+		     <h1>列表渲染</h1>
+		         <ul>
+		         	<li v-for="item in lists" v-if="item.sex=='boy'">{{item.name}}</li>
+		         </ul>
+		         <div>
+				  <span v-for="n in 10">{{ n }}</span>
+				</div>
+			
+			<h1>事件处理器</h1>
+			     <button v-on:click="counter">点击</button>
+			     <span>点击了{{count}}次</span>
+			     
+			<h1>表单控件绑定</h1>
+			     <h3>input框</h3>
+			     <input v-model="inputMessage" placeholder="edit me">
+                 <p>Message is: {{ inputMessage }}</p>
+                 <h3>多行文本</h3>
+                 <span>Multiline message is:</span>
+				 <p style="white-space: pre">{{ MultilineMessage }}</p>
+				 <textarea v-model="MultilineMessage" placeholder="add multiple lines"></textarea>
+				 <h3>单选框</h3>
+				  <input type="radio" id="one" value="One" v-model="picked">
+				  <label for="one">One</label>
+				  <br>
+				  <input type="radio" id="two" value="Two" v-model="picked">
+				  <label for="two">Two</label>
+				  <br>
+				  <span>Picked: {{ picked }}</span>
+				  <h3>复选框</h3>
+				  <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+					<label for="jack">Jack</label>
+					<input type="checkbox" id="john" value="John" v-model="checkedNames">
+					<label for="john">John</label>
+					<input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+					<label for="mike">Mike</label>
+					<br>
+					<span>Checked names: {{ checkedNames }}</span>
+                   <h3>下拉菜单</h3>
+                   <select v-model="selected">
+				    <option value="1">A</option>
+				    <option value="2">B</option>
+				    <option value="3">C</option>
+				  </select>
+				  <span>Selected: {{ selected }}</span>
+			</div>
+			
+			<div style="float: right;width: 60%;border-left: 1px solid #DCDCDC;padding-left: 15px;">
+				<h1>组件</h1>
+				<my-component></my-component>
+				<loading></loading>
+				<h3>组件参数传递以及自定义事件</h1>
+				<my-list text="my list"></my-list>
+			 	<my-list :text="item.name" v-for="item in lists" @click="getText(item.name)"></my-list>
+			    <h3>非父子间组件通信</h3>
+			     <my-one></my-one>
+			</div>
+		</div>
+		<script src="src/js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="src/js/vueBasicLearn.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
