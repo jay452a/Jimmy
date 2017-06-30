@@ -5,4 +5,74 @@
 @whiteColor:white;
 @blackColor:#333333;
 @grayColor:#99a9bf;
+
+.triggle(top,@border_width,@color){//上下左右的三角形
+  border-width: @border_width;
+  border-color: transparent transparent @color transparent;
+  border-style: dashed dashed solid dashed;
+}
+.triggle(bottom,@border_width,@color){
+  border-width: @border_width;
+  border-color: @color transparent transparent transparent;
+  border-style: solid dashed dashed dashed;
+}
+.triggle(left,@border_width,@color){
+  border-width: @border_width;
+  border-color: transparent @color transparent transparent;
+  border-style: dashed solid dashed dashed;
+}
+.triggle(right,@border_width,@color){
+  border-width: @border_width;
+  border-color: transparent transparent transparent @color;
+  border-style: dashed dashed dashed solid;
+}
+.cursorPointer{
+  cursor: pointer;
+}
+.cursorUnderLine{
+  text-decoration: underline;
+}
+.checkbox{
+  width: 14px;
+  height:14px;
+  display: inline-block;
+  border: 1px solid @primaryColor;
+  border-radius: 2px;
+  position: relative;
+  top:2px;
+}
+
+
+
 .JM-loading{color: @primaryColor;text-align: center;font-size: 18px;}
+.JM-tree i{
+  display: inline-block;
+  .triggle(right,6px,@grayColor);
+  .cursorPointer();
+}
+.JM-tree {
+  margin: 5px 0;
+}
+.JM-tree label{
+  .cursorPointer();
+}
+.JM-tree label.checkbox{
+  .checkbox()
+}
+.JM-tree label.checkbox.active:after{
+  content: "\2713";
+  background: @primaryColor;
+  color: @whiteColor;
+  width: 14px;
+  height: 14px;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  position: relative;
+  top:-3px;
+
+}
+.JM-tree  label:hover{
+  .cursorUnderLine()
+}
