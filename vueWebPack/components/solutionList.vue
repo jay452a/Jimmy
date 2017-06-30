@@ -1,5 +1,8 @@
 <template>
-	<li>{{li2}}</li>
+	<div>
+		<li>{{li2}}</li>
+		<jm-loading text="正在加载"></jm-loading>
+	</div>
 </template>
 <script type="text/javascript">
 
