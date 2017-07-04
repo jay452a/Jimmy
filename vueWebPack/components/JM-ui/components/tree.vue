@@ -46,7 +46,8 @@
                     this.treeData.checked=false
                 }
                 console.log(this.allData)
-            }
+            },
+
         },
         computed:{
             hasChild(){
