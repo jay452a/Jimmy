@@ -9,12 +9,16 @@ import 'element-ui/lib/theme-default/index.css'
 import './src/style/public.css'
 import "./src/style/demo.less"
 import JM from "./components/JM-ui"
+import Vuex from "vuex"
 Vue.config.debug = true;//开启错误提示
 
 Vue.use(VueRouter)
 Vue.use(ElementUI)
 Vue.use(JM)
-let router = new VueRouter({
+Vue.use(Vuex)
+
+
+const router = new VueRouter({
     routes: [
 	    {
 	    	path: '/',
@@ -29,7 +33,7 @@ let router = new VueRouter({
     ]
 });
 
-new Vue({
+const vm=new Vue({
 	el:"#app",
 	router: router,
 
