@@ -20,7 +20,10 @@
 				isSB="false"
 				>
 			</modal>-->
-		   	 <router-view></router-view>
+			<keep-alive include="list">
+				<router-view></router-view>
+			</keep-alive>
+
 		</div>
 		<script src="assets/bundle.js" type="text/javascript" charset="utf-8"></script>
 	</body>

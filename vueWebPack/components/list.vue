@@ -8,7 +8,10 @@
 	   </ul>
 	   <div class="right">
 		   	<p>{{message}}</p>
-		   <router-view></router-view>
+		   <keep-alive include="list1,list2,edit">
+			   <router-view></router-view>
+		   </keep-alive>
+
 	   </div>
 	</div>
 	
