@@ -10,6 +10,7 @@ import './src/style/public.css'
 import "./src/style/demo.less"
 import JM from "./components/JM-ui"
 import Vuex from "vuex"
+import store from "./vuex/store"
 Vue.config.debug = true;//开启错误提示
 
 Vue.use(VueRouter)
@@ -34,6 +35,7 @@ const router = new VueRouter({
 });
 
 const vm=new Vue({
+    store,
 	el:"#app",
 	router: router,
 

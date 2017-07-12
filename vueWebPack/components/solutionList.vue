@@ -14,7 +14,7 @@
 		<ul>
 			<li v-for="list in listData" @click="setData(list)" v-show="list.show">{{list.name}}</li>
 		</ul>
-
+         <div>{{count}}</div>
 	</div>
 </template>
 <script type="text/javascript">
@@ -80,6 +80,8 @@
             }]
         }]
     let listData=[{name:"jimmy",show:true},{"name":"super",show:true}]
+
+
         export default{
         //components: {JmTree},
         data(){
@@ -91,6 +93,24 @@
 		},
 		methods:{
             chose(){
+                /*let stringTest="aswdawerfgthy"
+                stringTest=stringTest.replace(/([a-z])(?=.*\1)/g,function (res1,res2,res3) {
+					console.log(res1,res2,res3)
+                })
+                console.log(stringTest)*/
+                var foo={
+                    baz:function(){
+                        return this.bac
+                    },
+                    bac:1
+                }
+                console.log(foo.baz());
+                (function (f){
+                    console.log(arguments[0]());
+                })(foo.baz);
+                (function f(f){
+                   console.log(typeof f())
+                })(function (){return 1})
 
 
 
@@ -103,6 +123,7 @@
 			}
 		},
         created(){
+
             let data=this.treeData
             function setData(data,id) {
                 for(let i=0;i<data.length;i++){
@@ -122,7 +143,14 @@
             setData(data)
             this.treeData=data
 			console.log(this.treeData)
-        }
+        },
+		computed:{
+            count(){
+				this.$store.dispatch('increment')
+                return this.$store.state.a.count
+
+			}
+		}
 	}
 </script>
 <style>

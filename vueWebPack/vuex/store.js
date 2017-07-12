@@ -9,10 +9,34 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
-    // 定义状态
+const moduleA={
     state: {
-        author: 'Wise Wrong'
+        count: 10
+    },
+    mutations: {
+        increment (state, n) {
+            state.count += n
+        }
+    },
+    getters:{
+        docount:state => state.count+10
+    },
+    actions: {
+        increment (context) {
+            setTimeout(()=>{
+                context.commit('increment',10)
+            },1000)
+        }
+    }
+}
+
+
+
+
+const store = new Vuex.Store({
+    modules: {
+        a: moduleA,
+
     }
 })
 
