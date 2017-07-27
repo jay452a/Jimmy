@@ -176,6 +176,145 @@ class Activiti {
 
     }
    //画线
+    paintArrowGetPath(startX,startY,x,y,direct,nearlyName){//获取画线的路径，svg path
+        let pathD
+        let flowWidth=document.querySelector(".flowIcon").offsetWidth/2
+        console.log(direct,nearlyName)
+        //outEndX，outEndY定义来获取终点之外某一接近点，以改变箭头指向
+        let outEndX
+        let outEndY
+        switch (nearlyName) {
+            case "top":
+                outEndX=x
+                outEndY=y-50
+                break;
+            case "bottom":
+                outEndX=x
+                outEndY=y+50
+                break;
+            case "left":
+                outEndX=x-50
+                outEndY=y
+                break;
+            default:
+                outEndX=x+50
+                outEndY=y
+        }
+        switch (direct) {
+            case "dotB":
+                if(x-startX<=0&&y-startY>=0){//往左下
+                    if(y-startY<30){ //当Y移动不超过30时
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY+30)+" L"+x+","+(startY+30)+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+startX+","+(y+startY)/2+" L"+x+","+(y+startY)/2+" L"+x+","+y
+                    }
+                }
+                if(x-startX<=0&&startY-y>0){//往左上
+                    if(startX-x<flowWidth){ //当鼠标往左移动小于节点的一半
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY+30)+" L"+(startX-flowWidth-30)+","+(startY+30)+
+                                " L"+(startX-flowWidth-30)+","+y+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY+30)+" L"+x+","+(startY+30)+" L"+x+","+y
+                    }
+                }
+                if(x-startX>0&&y-startY>=0){//往右下
+                    if(y-startY<30){ //当Y移动不超过30时
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY+30)+" L"+x+","+(startY+30)+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+startX+","+(y+startY)/2+" L"+x+","+(y+startY)/2+" L"+x+","+y
+                    }
+                }
+                if(x-startX>0&&startY-y>0){//往右上
+                    if(x-startX<flowWidth){ //当鼠标往左移动小于节点的一半
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY+30)+" L"+(startX+flowWidth+30)+","+(startY+30)+
+                            " L"+(startX+flowWidth+30)+","+y+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY+30)+" L"+x+","+(startY+30)+" L"+x+","+y
+                    }
+                }
+                break;
+            case "dotT":
+                if(x-startX<=0&&startY-y>0){//往左上
+                    if(startY-y<30){ //当Y移动不超过30时
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY-30)+" L"+x+","+(startY-30)+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+startX+","+(y+startY)/2+" L"+x+","+(y+startY)/2+" L"+x+","+y
+                    }
+                }
+                if(x-startX>0&&startY-y>0){//往右上
+                    if(startY-y<30){ //当Y移动不超过30时
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY-30)+" L"+x+","+(startY-30)+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+startX+","+(y+startY)/2+" L"+x+","+(y+startY)/2+" L"+x+","+y
+                    }
+                }
+                if(x-startX<=0&&startY-y<=0){//往左下
+                    if(startX-x<flowWidth){ //当鼠标往左移动小于节点的一半
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY-30)+" L"+(startX-flowWidth-30)+","+(startY-30)+
+                            " L"+(startX-flowWidth-30)+","+y+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY-30)+" L"+x+","+(startY-30)+" L"+x+","+y
+                    }
+                }
+                if(x-startX>0&&startY-y<=0){
+                    if(x-startX<flowWidth){ //当鼠标往左移动小于节点的一半
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY-30)+" L"+(startX+flowWidth+30)+","+(startY-30)+
+                            " L"+(startX+flowWidth+30)+","+y+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+startX+","+(startY-30)+" L"+x+","+(startY-30)+" L"+x+","+y
+                    }
+                }
+                break;
+            case "dotL":
+                if(x-startX<=0&&startY-y>0){//往左上
+                    if(startX-x<30){
+                        pathD="M"+startX+","+startY+" L"+(startX-30)+","+startY+" L"+(startX-30)+","+y+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+x+","+startY+" L"+x+","+y
+                    }
+                }
+                if(x-startX>0&&startY-y>0){//往右上
+                    pathD="M"+startX+","+startY+" L"+(startX-30)+","+startY+" L"+(startX-30)+","+y+" L"+x+","+y
+                }
+                if(x-startX<=0&&startY-y<=0){//往左下
+                    if(startX-x<30){
+                        pathD="M"+startX+","+startY+" L"+(startX-30)+","+startY+" L"+(startX-30)+","+y+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+x+","+startY+" L"+x+","+y
+                    }
+                }
+                if(x-startX>0&&startY-y<=0){//往右下
+                    pathD="M"+startX+","+startY+" L"+(startX-30)+","+startY+" L"+(startX-30)+","+y+" L"+x+","+y
+                }
+                break;
+            default:
+                if(x-startX<=0&&startY-y>0){//往左上
+                    pathD="M"+startX+","+startY+" L"+(startX+30)+","+startY+" L"+(startX+30)+","+y+" L"+x+","+y
+                }
+                if(x-startX<=0&&startY-y<=0){//往左下
+                    pathD="M"+startX+","+startY+" L"+(startX+30)+","+startY+" L"+(startX+30)+","+y+" L"+x+","+y
+                }
+                if(x-startX>0&&startY-y>0){//往右上
+                    if(x-startX<30){
+                        pathD="M"+startX+","+startY+" L"+(startX+30)+","+startY+" L"+(startX+30)+","+y+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+x+","+startY+" L"+x+","+y
+                    }
+                }
+                if(x-startX>0&&startY-y<=0){//往右下
+                    if(x-startX<30){
+                        pathD="M"+startX+","+startY+" L"+(startX+30)+","+startY+" L"+(startX+30)+","+y+" L"+x+","+y
+                    }else{
+                        pathD="M"+startX+","+startY+" L"+x+","+startY+" L"+x+","+y
+                    }
+                }
+        }
+
+        return pathD
+    }
+    paintArrowMouseUpPath(startX,startY,endX,endY){//鼠标释放时的真是路径，根据起始点和结束点计算
+        console.log(startX,startY,endX,endY)
+    }
     paintArrow(moveDom){
         let isDown=false
         let startX
@@ -184,6 +323,7 @@ class Activiti {
         let endY
         let svgContainer=document.getElementById("paintSvg")
         let that=this
+        let direct
         //当鼠标移动的时候绘图
         const paint=function (groupData,dataRow,cursorNode) {
             let mouseX=cursorNode.clientX//鼠标位置x
@@ -192,8 +332,8 @@ class Activiti {
             let paintAreaY=that.paintArea.offsetTop
             let x=mouseX-paintAreaX
             let y=mouseY-paintAreaY
-            console.log(mouseX,mouseY)
-
+            let nearlyName //获取最近点
+            //console.log(mouseX,mouseY)
 
             /*计算最近点*/
             let endDom//获取指向节点
@@ -203,7 +343,7 @@ class Activiti {
             if(cursorNode.target.parentNode.className=="flowIcon"){
                 endDom=cursorNode.target.parentNode
             }
-            console.log(endDom)
+            //console.log(endDom)
 
             if(cursorNode.target.className=="flowIcon"||cursorNode.target.parentNode.className=="flowIcon"){
                 //计算出指向节点的上下左右四个位置坐标
@@ -233,14 +373,13 @@ class Activiti {
                     {name:"right", num:curToEndDomR}
                 )
                 let nearly=100000
-                let nearlyName
                 for(let i=0;i<destination.length;i++){
                     if(destination[i].num<nearly){
                         nearly=destination[i].num
                         nearlyName=destination[i].name
                     }
                 }
-                console.log(nearly,nearlyName)
+               // console.log(nearly,nearlyName)
                 switch (nearlyName) {
                     case "top":
                         x=endDomT.x
@@ -263,24 +402,21 @@ class Activiti {
 
 
             //绘制直线属性
-            groupData.line.setAttribute("x1",startX)
+            /*groupData.line.setAttribute("x1",startX)
             groupData.line.setAttribute("y1",startY)
             groupData.line.setAttribute("x2",x)
             groupData.line.setAttribute("y2",y)
             groupData.line.setAttribute("marker-end","url(#arrow)")//箭头
             groupData.line.style.stroke="rgb(89, 171, 228)"
-            groupData.line.style.strokeWidth="2px"
-            //绘制路径属性
-            let pathD="M"+startX+","+startY
-            if(x-startX<=0&&y-startY<=0){//往左下
-               if(y-startY<50){
-                   pathD+=" L"+startX+","+(startY+50)+" L"+x+","+(startY+50)+" L"+x+","+"y"
-               }
-            }
+            groupData.line.style.strokeWidth="2px"*/
+            //获取绘制路径属性
+            let pathD=that.paintArrowGetPath(startX,startY,x,y,direct,nearlyName)
+
             groupData.path.setAttribute("d",pathD)
-            groupData.path.setAttribute("fill","#fff")
+            groupData.path.setAttribute("fill","transparent")
             groupData.path.setAttribute("stroke","#59ABE4")
             groupData.path.setAttribute("stroke-width","2")
+            groupData.path.setAttribute("marker-end","url(#arrow)")
             endX=x
             endY=y
 
@@ -304,6 +440,8 @@ class Activiti {
                          }
                      }
                      groupData.group.setAttribute("data-path",start+"-"+end)
+                     let pathD=that.paintArrowMouseUpPath(startX,startY,endX,endY)
+                    //groupData.group.setAttribute("d",pathD)
                 }else{
                     groupData.group.remove()
                 }
@@ -319,6 +457,7 @@ class Activiti {
                 document.onmousemove=null
                 document.onmouseup=null
                 this.onmouseup=null
+                direct=ev.target.className //标记哪个点按下的
                 startX=ev.clientX-that.paintArea.offsetLeft
                 startY=ev.clientY-that.paintArea.offsetTop
                 //创建一个组

@@ -57,6 +57,7 @@ html,body{-moz-user-select: none; -khtml-user-select: none; user-select: none;}
     display: inline-block;
     position: absolute;
     z-index: 9;
+
 }
 #paintArea>div.flowIcon:hover{
     cursor: move;
